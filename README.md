@@ -28,26 +28,29 @@ This is a Python-based backend service that allows users to upload one or more i
 
 ---
 
-## Setup Instructions
+## Setup Instructions (Docker Compose)
 
 ### 1. Clone the repository
 
 git clone https://github.com/Anubrata12/image-api.git
 cd image-api
 
-### 2. Install dependencies
-pip install -r requirements.txt
+### 2. Build and start all services
 
-### 3. Start Redis (via Docker)
-docker run -d -p 6379:6379 redis
+docker-compose up --build
 
-### 4. Start Celery worker
-celery -A tasks worker --loglevel=info
+### 3. Access the API
+Swagger UI: http://localhost:8000/docs
 
-### 5. Run FastAPI app
-uvicorn main:app --reload
+Upload images via /process-job
 
-Swagger UI available at: http://localhost:8000/docs
+Poll status via /status-job/{job_id}
+
+Download results via /download/{job_id}
+
+### 4. Stopping the services
+
+docker-compose down
 
 ---
 

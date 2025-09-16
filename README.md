@@ -40,6 +40,7 @@ cd image-api
 docker-compose up --build
 
 ### 3. Access the API
+
 Swagger UI: http://localhost:8000/docs
 
 Upload images via /process-job
@@ -55,6 +56,7 @@ docker-compose down
 ---
 
 API Endpoints
+
 POST /process-batch: Upload images and apply filter
 
 GET /status-job/{job_id}: Check processing status

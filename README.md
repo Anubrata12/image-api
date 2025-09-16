@@ -83,6 +83,7 @@ image-api/
 ├── tasks.py             # Celery image processing
 ├── processed-images/    # Output folder
 ├── requirements.txt
+├── docs                 # Proj Desc rtf file
 └── docker-compose.yml   # Redis + worker setup
 
 Author

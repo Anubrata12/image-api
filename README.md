@@ -31,7 +31,7 @@ This is a Python-based backend service that allows users to upload one or more i
 ## Setup Instructions
 
 ### 1. Clone the repository
-```bash
+
 git clone https://github.com/Anubrata12/image-api.git
 cd image-api
 

@@ -1,0 +1,23 @@
+version: '3.9'
+services:
+  fastapi:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/app/app
+      - ./processed-images:/app/processed-images  # ✅ shared volume
+    depends_on:
+      - redis
+
+  worker:
+    build: .
+    command: celery -A app.tasks worker --loglevel=info
+    volumes:
+      - ./app:/app/app
+      - ./processed-images:/app/processed-images  # ✅ shared volume
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:7

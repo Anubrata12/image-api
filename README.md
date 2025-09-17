@@ -69,7 +69,7 @@ GET /images/{job_id}/{filename}: Access individual images
 
 ## Application Flow
 
-### This backend processes images asynchronously using FastAPI, Celery, Redis, and Pillow. Here's how it works:
+### This backend processes images asynchronously using FastAPI, Celery, Redis, and Pillow
 
 #### 1. User uploads images via /process-batch
 

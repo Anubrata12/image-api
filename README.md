@@ -55,7 +55,7 @@ docker-compose down
 
 ---
 
-API Endpoints
+## API Endpoints
 
 POST /process-batch: Upload images and apply filter
 
@@ -67,7 +67,8 @@ GET /images/{job_id}/{filename}: Access individual images
 
 ---
 
-Application Flow
+## Application Flow
+
 Upload images via /process-batch with a selected filter
 
 Celery tasks apply filters asynchronously

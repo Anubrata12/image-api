@@ -9,7 +9,7 @@ This is a Python-based backend service that allows users to upload one or more i
 - Upload multiple images via POST
 - Apply filters like Blur, Sharpen, Grayscale, Edges, Smooth
 - Asynchronous processing using Celery
-- Track job status and readiness
+- Track job status
 - Download processed images as a ZIP archive
 - Auto-generated Swagger UI for API testing
 

@@ -77,6 +77,7 @@ Use /status-batch/{batch_id} to check readiness
 
 Download results via /download/{batch_id}
 
+---
 
 Author
 Built by Anubrata Dutta Senior Software Engineer | Backend & Cloud Infrastructure

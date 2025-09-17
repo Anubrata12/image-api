@@ -77,6 +77,45 @@ Use /status-batch/{batch_id} to check readiness
 
 Download results via /download/{batch_id}
 
+┌────────────────────────────┐
+│ 1. User uploads images     │
+│    via /process-job        │
+└────────────┬───────────────┘
+             │
+             ▼
+┌────────────────────────────┐
+│ 2. FastAPI receives files  │
+│    and dispatches Celery   │
+│    tasks via Redis broker  │
+└────────────┬───────────────┘
+             │
+             ▼
+┌────────────────────────────┐
+│ 3. Celery worker picks up  │
+│    each task and applies   │
+│    filter using Pillow     │
+└────────────┬───────────────┘
+             │
+             ▼
+┌────────────────────────────┐
+│ 4. Processed images saved  │
+│    to /processed-images/   │
+│    under job_id folder     │
+└────────────┬───────────────┘
+             │
+             ▼
+┌────────────────────────────┐
+│ 5. User polls /status-job  │
+│    to check readiness      │
+└────────────┬───────────────┘
+             │
+             ▼
+┌────────────────────────────┐
+│ 6. If ready, user downloads│
+│    ZIP via /download/{id}  │
+└────────────────────────────┘
+
+
 ---
 
 Author

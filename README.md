@@ -77,52 +77,6 @@ Use /status-batch/{batch_id} to check readiness
 
 Download results via /download/{batch_id}
 
-FLOW CHART
-
-[User Uploads Images via /process-job]
-            |
-            v
-[FastAPI receives request]
-            |
-            v
-[For each image:]
-    └──> Dispatch Celery task → [Redis broker]
-            |
-            v
-[Celery Worker picks up task]
-            |
-            v
-[Apply filter using Pillow]
-            |
-            v
-[Save processed image to /processed-images/{job_id}]
-            |
-            v
-[Return filename to Redis backend]
-            |
-            v
-[User polls /status-job/{job_id}]
-            |
-            v
-[FastAPI checks task status via AsyncResult]
-            |
-            v
-[If all ready → /download/{job_id} returns ZIP]
-
-
----
-
-Folder Structure
-
-image-api/
-├── main.py              # FastAPI app
-├── tasks.py             # Celery image processing
-├── processed-images/    # Output folder
-├── requirements.txt     # Libs required
-├── docs                 # Proj Desc rtf file
-└── docker-compose.yml   # Redis + worker setup
-
-
 
 Author
 Built by Anubrata Dutta Senior Software Engineer | Backend & Cloud Infrastructure

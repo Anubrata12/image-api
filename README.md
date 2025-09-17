@@ -31,14 +31,14 @@ This is a Python-based backend service that allows users to upload one or more i
 ## Setup Instructions (Docker Compose)
 
 ### 1. Clone the repository
-
+```bash
 git clone https://github.com/Anubrata12/image-api.git
 cd image-api
-
+```
 ### 2. Build and start all services
-
+```bash
 docker-compose up --build
-
+```
 ### 3. Access the API
 
 Swagger UI: http://localhost:8000/docs
@@ -50,9 +50,9 @@ Poll status via /status-job/{job_id}
 Download results via /download/{job_id}
 
 ### 4. Stopping the services
-
+```bash
 docker-compose down
-
+```
 ---
 
 ## API Endpoints

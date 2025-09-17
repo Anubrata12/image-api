@@ -158,6 +158,6 @@ No assumptions about cloud deployment or Kubernetes.
 ---
 
 Author
-Built by Anubrata Dutta Senior Software Engineer | Backend & Cloud Infrastructure
+Built by Anubrata Dutta | Senior Software Engineer | Backend & Cloud Infrastructure
 
 

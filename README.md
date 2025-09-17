@@ -69,13 +69,37 @@ GET /images/{job_id}/{filename}: Access individual images
 
 ## Application Flow
 
-Upload images via /process-batch with a selected filter
+### This backend processes images asynchronously using FastAPI, Celery, Redis, and Pillow. Here's how it works:
 
-Celery tasks apply filters asynchronously
+#### 1. User uploads images via /process-batch
 
-Use /status-batch/{batch_id} to check readiness
+- FastAPI receives the request with multiple image files and a selected filter.
 
-Download results via /download/{batch_id}
+- A unique batch_id is generated.
+
+- For each image, FastAPI dispatches a Celery task using Redis as the broker.
+
+#### 2. Redis queues the tasks
+
+- Redis stores the task metadata and routes them to available Celery workers.
+
+#### 3. Celery workers process images
+
+- Each worker retrieves the image bytes and applies the requested filter using Pillow.
+
+-  Processed images are saved to processed-images/{batch_id}/.
+
+#### 4. User polls /status-batch/{batch_id}
+
+-  FastAPI checks task status via Redis using AsyncResult.
+
+-  If all tasks are complete, image URLs are returned.
+
+#### 5. User downloads results via /download/{batch_id}
+
+- FastAPI bundles all processed images into a ZIP archive.
+
+- The archive is returned as a downloadable file.
 
 ---
 

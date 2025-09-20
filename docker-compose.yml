@@ -6,7 +6,7 @@ services:
       - "8000:8000"
     volumes:
       - ./app:/app/app
-      - ./processed-images:/app/processed-images  # ✅ shared volume
+      - ./processed-images:/app/processed-images
     depends_on:
       - redis
 
@@ -15,7 +15,7 @@ services:
     command: celery -A app.tasks worker --loglevel=info
     volumes:
       - ./app:/app/app
-      - ./processed-images:/app/processed-images  # ✅ shared volume
+      - ./processed-images:/app/processed-images
     depends_on:
       - redis
 

@@ -11,7 +11,7 @@ import zipfile
 
 app = FastAPI()
 app.mount("/images", StaticFiles(directory="processed-images"), name="images")
-job_tasks = {}  # job_id → list of task_ids
+job_tasks = {} 
 
 
 @app.post("/process-job")

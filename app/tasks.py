@@ -5,7 +5,6 @@ import os
 import uuid
 import time
 
-# Configure Celery with Redis as broker and backend
 celery_app = Celery(
     "tasks",
     broker="redis://redis:6379/0",
@@ -18,7 +17,6 @@ def process_image_task(image_bytes, filter, job_id=None):
     time.sleep(60)
     image = Image.open(io.BytesIO(image_bytes))
 
-    # Apply filter using dispatch map
     filter_map = {
         "blur": lambda img: img.filter(ImageFilter.BLUR),
         "sharpen": lambda img: img.filter(ImageFilter.SHARPEN),

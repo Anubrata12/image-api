@@ -57,7 +57,7 @@ docker-compose down
 
 ## API Endpoints
 
-POST /process-batch: Upload images and apply filter
+POST /process-job: Upload images and apply filter
 
 GET /status-job/{job_id}: Check processing status
 
@@ -71,11 +71,11 @@ GET /images/{job_id}/{filename}: Access individual images
 
 ### This app processes images asynchronously using FastAPI, Celery, Redis, and Pillow
 
-#### 1. User uploads images via /process-batch
+#### 1. User uploads images via /process-job
 
 - FastAPI receives request with multiple images and a filter.
 
-- Unique batch_id is generated.
+- Unique job_id is generated.
 
 - For each image, FastAPI dispatches a Celery task using Redis as broker.
 
@@ -87,15 +87,15 @@ GET /images/{job_id}/{filename}: Access individual images
 
 - Each worker retrieves image bytes and applies the requested filter using Pillow.
 
-- Processed images are saved to processed-images/{batch_id}/ folder.
+- Processed images are saved to processed-images/{job_id}/ folder.
 
-#### 4. User polls /status-batch/{batch_id}
+#### 4. User polls /status-job/{job_id}
 
 - FastAPI checks task status via Redis using AsyncResult.
 
 - If all tasks are complete, image URLs are returned.
 
-#### 5. User downloads results via /download/{batch_id}
+#### 5. User downloads results via /download/{job_id}
 
 - FastAPI bundles all processed images into a ZIP archive.
 
